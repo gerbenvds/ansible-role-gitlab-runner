@@ -27,7 +27,7 @@
   tags:
     - always
 - debug:
-    msg: '{{ gitlab_runner.stdout }}'
+    msg: '{{ gitlab_runner }}'
 
 - name: Create config.toml file using jinja2
   template:
