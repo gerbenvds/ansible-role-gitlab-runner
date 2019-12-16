@@ -17,15 +17,17 @@
     state: present
   become: true
   register: gitlab_runner
-  until:
-    - gitlab_runner.runner.active is defined
-    - gitlab_runner.runner.active | bool
+#  until:
+#    - gitlab_runner.runner.active is defined
+#    - gitlab_runner.runner.active | bool
   when:
     - not gitlab_runner_skip_registration|bool
     - gitlab_ci_token | length
   no_log: '{{ no_logs | default(true) | bool }}'
   tags:
     - always
+- debug:
+    msg: '{{ gitlab_runner.stdout }}'
 
 - name: Create config.toml file using jinja2
   template:
